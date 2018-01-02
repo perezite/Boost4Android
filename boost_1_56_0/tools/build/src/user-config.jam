@@ -1,0 +1,53 @@
+import os ;  
+androidNDKRoot = Z:/Temp/boost-android-build/android-ndk-r10b ;
+
+# Compilation: .\b2 --without-python toolset=gcc-android4.8_armeabi link=static runtime-link=static target-os=linux architecture=arm --stagedir=android-armeabi-v7a threading=multi
+using gcc : android4.8_armeabi :
+    $(androidNDKRoot)/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/arm-linux-androideabi-g++ :  
+    <archiver>$(androidNDKRoot)/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/arm-linux-androideabi-ar  
+    <ranlib>$(androidNDKRoot)/toolchains/arm-linux-androideabi-4.8/prebuilt/$(androidPlatform)/bin/arm-linux-androideabi-ranlib
+	
+	<ranlib>$(androidNDKRoot)/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/arm-linux-androideabi-ranlib  
+	
+    <compileflags>--sysroot=$(androidNDKRoot)/platforms/android-9/arch-arm
+    <compileflags>-I$(androidNDKRoot)/sources/cxx-stl/gnu-libstdc++/4.8/include 
+    <compileflags>-I$(androidNDKRoot)/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi-v7a/include
+    <compileflags>-fexceptions
+    <compileflags>-frtti
+    <compileflags>-march=armv7-a
+    <compileflags>-marm
+    <compileflags>-mthumb
+    <compileflags>-mfpu=vfpv3-d16
+    <compileflags>-mfloat-abi=softfp
+    <compileflags>-fno-strict-aliasing
+    <compileflags>-finline-limit=64
+    <compileflags>-D__arm__
+    <compileflags>-D__ARM_ARCH_7__
+    <compileflags>-D__ARM_ARCH_7A__
+    <compileflags>-D__ARM_ARCH_7R__
+    <compileflags>-D__ARM_ARCH_7M__
+    <compileflags>-D__ARM_ARCH_7EM__
+    <compileflags>-D__ARM_ARCH_7S__
+    <compileflags>-MMD
+    <compileflags>-MP
+    <compileflags>-MF
+    <compileflags>-fpic
+    <compileflags>-ffunction-sections
+    <compileflags>-funwind-tables
+    <compileflags>-fstack-protector
+    <compileflags>-no-canonical-prefixes
+    <compileflags>-Os
+    <compileflags>-fomit-frame-pointer
+    <compileflags>-fno-omit-frame-pointer
+    <compileflags>-DANDROID
+    <compileflags>-D__ANDROID__
+    <compileflags>-DNDEBUG
+    <compileflags>-D__GLIBC__
+    <compileflags>-DBOOST_ASIO_DISABLE_STD_ATOMIC
+    <compileflags>-D_GLIBCXX__PTHREADS
+    <compileflags>-Wa,--noexecstack
+    <compileflags>-Wformat
+    <compileflags>-Werror=format-security
+    <compileflags>-lstdc++
+    <compileflags>-Wno-long-long
+        ;
